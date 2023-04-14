@@ -1,3 +1,7 @@
+ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE;
+CREATE USER scott IDENTIFIED BY tiger;
+grant dba to scott;
+
 -- 연락처(Contact) 테이블 생성
 -- JDBC: 자바 프로그램으로 연락처 테이블을 관리
 -- CRUD(Create, Read, Update, Delete)
