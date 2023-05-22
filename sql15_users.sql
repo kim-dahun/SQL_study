@@ -16,4 +16,3 @@ commit;
 
 select * from users;
 
-ALTER TABLE users ADD CONSTRAINT users_id_uq UNIQUE (username);
