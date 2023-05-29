@@ -1,0 +1,66 @@
+--------------------------------------------------------
+--  파일이 생성됨 - 월요일-5월-29-2023   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table USERAUCTION
+--------------------------------------------------------
+
+  CREATE TABLE "SCOTT"."USERAUCTION" 
+   (	"CID" NUMBER(8,0), 
+	"CHATROOM" VARCHAR2(20 CHAR), 
+	"MEMBETCOUNT" NUMBER(10,0) DEFAULT 0, 
+	"AID" NUMBER(8,0)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+REM INSERTING into SCOTT.USERAUCTION
+SET DEFINE OFF;
+--------------------------------------------------------
+--  DDL for Index CI_UA_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "SCOTT"."CI_UA_PK" ON "SCOTT"."USERAUCTION" ("CID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Trigger USERAUCTION_TRG
+--------------------------------------------------------
+
+  CREATE OR REPLACE NONEDITIONABLE TRIGGER "SCOTT"."USERAUCTION_TRG" 
+BEFORE INSERT ON USERAUCTION 
+FOR EACH ROW 
+BEGIN
+  <<COLUMN_SEQUENCES>>
+  BEGIN
+    NULL;
+  END COLUMN_SEQUENCES;
+END;
+/
+ALTER TRIGGER "SCOTT"."USERAUCTION_TRG" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger USERAUCTION_TRG1
+--------------------------------------------------------
+
+  CREATE OR REPLACE NONEDITIONABLE TRIGGER "SCOTT"."USERAUCTION_TRG1" 
+BEFORE INSERT ON USERAUCTION 
+FOR EACH ROW 
+BEGIN
+  <<COLUMN_SEQUENCES>>
+  BEGIN
+    IF INSERTING AND :NEW.CID IS NULL THEN
+      SELECT USERAUCTION_SEQ1.NEXTVAL INTO :NEW.CID FROM SYS.DUAL;
+    END IF;
+  END COLUMN_SEQUENCES;
+END;
+/
+ALTER TRIGGER "SCOTT"."USERAUCTION_TRG1" ENABLE;
+--------------------------------------------------------
+--  Constraints for Table USERAUCTION
+--------------------------------------------------------
+
+  ALTER TABLE "SCOTT"."USERAUCTION" ADD CONSTRAINT "CI_UA_PK" PRIMARY KEY ("CID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS"  ENABLE;
+  ALTER TABLE "SCOTT"."USERAUCTION" MODIFY ("CHATROOM" NOT NULL ENABLE);
+  ALTER TABLE "SCOTT"."USERAUCTION" MODIFY ("AID" NOT NULL ENABLE);

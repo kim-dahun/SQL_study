@@ -1,0 +1,65 @@
+--------------------------------------------------------
+--  파일이 생성됨 - 월요일-5월-29-2023   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table CATEGORY
+--------------------------------------------------------
+
+  CREATE TABLE "SCOTT"."CATEGORY" 
+   (	"CATEGORYID" NUMBER(10,0), 
+	"CATEGORY" VARCHAR2(100 CHAR)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+REM INSERTING into SCOTT.CATEGORY
+SET DEFINE OFF;
+Insert into SCOTT.CATEGORY (CATEGORYID,CATEGORY) values (1,'탁주');
+Insert into SCOTT.CATEGORY (CATEGORYID,CATEGORY) values (2,'약주');
+Insert into SCOTT.CATEGORY (CATEGORYID,CATEGORY) values (3,'청주');
+Insert into SCOTT.CATEGORY (CATEGORYID,CATEGORY) values (4,'맥주');
+Insert into SCOTT.CATEGORY (CATEGORYID,CATEGORY) values (5,'과실주');
+Insert into SCOTT.CATEGORY (CATEGORYID,CATEGORY) values (6,'소주');
+Insert into SCOTT.CATEGORY (CATEGORYID,CATEGORY) values (7,'위스키');
+Insert into SCOTT.CATEGORY (CATEGORYID,CATEGORY) values (8,'브랜디');
+Insert into SCOTT.CATEGORY (CATEGORYID,CATEGORY) values (9,'증류주');
+Insert into SCOTT.CATEGORY (CATEGORYID,CATEGORY) values (10,'리큐르');
+Insert into SCOTT.CATEGORY (CATEGORYID,CATEGORY) values (11,'주정');
+Insert into SCOTT.CATEGORY (CATEGORYID,CATEGORY) values (12,'기타주류');
+--------------------------------------------------------
+--  DDL for Index CATEGORY_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "SCOTT"."CATEGORY_PK" ON "SCOTT"."CATEGORY" ("CATEGORYID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Trigger CATEGORY_TRG
+--------------------------------------------------------
+
+  CREATE OR REPLACE NONEDITIONABLE TRIGGER "SCOTT"."CATEGORY_TRG" 
+BEFORE INSERT ON CATEGORY 
+FOR EACH ROW 
+BEGIN
+  <<COLUMN_SEQUENCES>>
+  BEGIN
+    NULL;
+  END COLUMN_SEQUENCES;
+END;
+
+/
+ALTER TRIGGER "SCOTT"."CATEGORY_TRG" ENABLE;
+--------------------------------------------------------
+--  Constraints for Table CATEGORY
+--------------------------------------------------------
+
+  ALTER TABLE "SCOTT"."CATEGORY" MODIFY ("CATEGORY" NOT NULL ENABLE);
+  ALTER TABLE "SCOTT"."CATEGORY" MODIFY ("CATEGORYID" NOT NULL ENABLE);
+  ALTER TABLE "SCOTT"."CATEGORY" ADD CONSTRAINT "CATEGORY_PK" PRIMARY KEY ("CATEGORYID")
+  USING INDEX "SCOTT"."CATEGORY_PK"  ENABLE;
